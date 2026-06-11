@@ -1,0 +1,281 @@
+basePath: /api/v1
+definitions:
+  handler.loginReq:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+    type: object
+  handler.registerReq:
+    properties:
+      email:
+        type: string
+      password:
+        minLength: 6
+        type: string
+      passwordConfirm:
+        minLength: 6
+        type: string
+    required:
+    - email
+    - password
+    - passwordConfirm
+    type: object
+  handler.updateUserReq:
+    properties:
+      avatar_url:
+        type: string
+      current_password:
+        minLength: 6
+        type: string
+      email:
+        type: string
+      new_password:
+        minLength: 6
+        type: string
+    type: object
+  models.User:
+    properties:
+      avatar_url:
+        type: string
+      created_at:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      is_banned:
+        type: boolean
+      is_email_verified:
+        type: boolean
+      role:
+        $ref: '#/definitions/models.UserRole'
+      updated_at:
+        type: string
+    type: object
+  models.UserRole:
+    enum:
+    - default
+    - admin
+    type: string
+    x-enum-varnames:
+    - RoleDefault
+    - RoleAdmin
+host: localhost:8080
+info:
+  contact:
+    name: Stanislav Simakhin
+    url: https://ssyan.ru
+  description: Backend API
+  title: Backend API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Login user
+      parameters:
+      - description: login dto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.loginReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+      summary: Login user
+      tags:
+      - auth
+  /auth/logout:
+    post:
+      consumes:
+      - application/json
+      description: Logout user
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+      summary: Logout user
+      tags:
+      - auth
+  /auth/oauth/{provider}:
+    get:
+      description: Get redirect URL for OAuth provider
+      parameters:
+      - description: Provider (google/yandex/github)
+        in: path
+        name: provider
+        required: true
+        type: string
+      responses:
+        "302":
+          description: Found
+      summary: Get OAuth URL
+      tags:
+      - auth
+  /auth/oauth/{provider}/callback:
+    get:
+      description: Handle OAuth provider callback
+      parameters:
+      - description: Provider (google, yandex, github)
+        in: path
+        name: provider
+        required: true
+        type: string
+      - description: OAuth code
+        in: query
+        name: code
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      summary: OAuth Callback
+      tags:
+      - auth
+  /auth/refresh:
+    post:
+      consumes:
+      - application/json
+      description: Refresh JWT tokens
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+        "401":
+          description: Unauthorized
+      summary: Refresh JWT tokens
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Create a new user
+      parameters:
+      - description: Register dto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.registerReq'
+      produces:
+      - application/json
+      responses: {}
+      summary: Register new user
+      tags:
+      - auth
+  /auth/sessions:
+    delete:
+      description: Delete all active sessions
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Delete all sessions
+      tags:
+      - auth
+    get:
+      description: Get active sessions
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Get active sessions
+      tags:
+      - auth
+  /auth/sessions/{sessionId}:
+    delete:
+      description: Delete session by ID
+      parameters:
+      - description: Session ID
+        in: path
+        name: sessionId
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Delete session
+      tags:
+      - auth
+  /auth/sessions/{sessionId}/block:
+    patch:
+      description: Block session by ID
+      parameters:
+      - description: Session ID
+        in: path
+        name: sessionId
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Block session
+      tags:
+      - auth
+  /users/me:
+    get:
+      consumes:
+      - application/json
+      description: Get self
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.User'
+      security:
+      - BearerAuth: []
+      summary: Get self
+      tags:
+      - users
+    patch:
+      consumes:
+      - application/json
+      description: Update self
+      parameters:
+      - description: Update dto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.updateUserReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Update self
+      tags:
+      - users
+securityDefinitions:
+  BearerAuth:
+    description: Bearer [JWT]
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
