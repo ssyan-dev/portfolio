@@ -6,10 +6,10 @@ import (
 	"log"
 	"time"
 
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/auth/repository"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/config"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/database"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/models"
+	"github.com/ssyan-dev/portfolio/internal/auth/repository"
+	"github.com/ssyan-dev/portfolio/internal/config"
+	"github.com/ssyan-dev/portfolio/internal/database"
+	"github.com/ssyan-dev/portfolio/internal/models"
 	"golang.org/x/crypto/bcrypt"
 )
 

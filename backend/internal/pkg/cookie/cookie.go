@@ -4,7 +4,7 @@ import (
 	"time"
 
 	"github.com/gofiber/fiber/v3"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/config"
+	"github.com/ssyan-dev/portfolio/internal/config"
 )
 
 const (

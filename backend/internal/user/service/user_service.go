@@ -4,8 +4,8 @@ import (
 	"context"
 	"errors"
 
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/models"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/user/repository"
+	"github.com/ssyan-dev/portfolio/internal/models"
+	"github.com/ssyan-dev/portfolio/internal/user/repository"
 	"golang.org/x/crypto/bcrypt"
 )
 

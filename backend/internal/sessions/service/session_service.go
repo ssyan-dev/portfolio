@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/models"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/sessions/repository"
+	"github.com/ssyan-dev/portfolio/internal/models"
+	"github.com/ssyan-dev/portfolio/internal/sessions/repository"
 )
 
 type SessionService interface {

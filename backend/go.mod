@@ -1,4 +1,4 @@
-module github.com/ssyan-dev/go-fiber-backend-template
+module github.com/ssyan-dev/portfolio
 
 go 1.25.0
 

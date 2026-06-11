@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/config"
+	"github.com/ssyan-dev/portfolio/internal/config"
 )
 
 func NewPostgres(ctx context.Context, cfg *config.PostgresConfig) (*pgxpool.Pool, error) {

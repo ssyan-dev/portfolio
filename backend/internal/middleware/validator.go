@@ -2,8 +2,8 @@ package middleware
 
 import (
 	"github.com/gofiber/fiber/v3"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/pkg/response"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/pkg/validator"
+	"github.com/ssyan-dev/portfolio/internal/pkg/response"
+	"github.com/ssyan-dev/portfolio/internal/pkg/validator"
 )
 
 func Validate[T any]() fiber.Handler {

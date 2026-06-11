@@ -2,9 +2,9 @@ package handler
 
 import (
 	"github.com/gofiber/fiber/v3"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/pkg/auth"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/pkg/response"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/sessions/service"
+	"github.com/ssyan-dev/portfolio/internal/pkg/auth"
+	"github.com/ssyan-dev/portfolio/internal/pkg/response"
+	"github.com/ssyan-dev/portfolio/internal/sessions/service"
 )
 
 type SessionHandler struct {

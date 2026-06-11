@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/redis/go-redis/v9"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/models"
+	"github.com/ssyan-dev/portfolio/internal/models"
 )
 
 const (

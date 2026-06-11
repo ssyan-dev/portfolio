@@ -5,9 +5,9 @@ import (
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/config"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/pkg/auth"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/pkg/response"
+	"github.com/ssyan-dev/portfolio/internal/config"
+	"github.com/ssyan-dev/portfolio/internal/pkg/auth"
+	"github.com/ssyan-dev/portfolio/internal/pkg/response"
 )
 
 func AuthMiddleware(cfg *config.JWTConfig) fiber.Handler {

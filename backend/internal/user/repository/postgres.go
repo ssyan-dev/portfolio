@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/models"
+	"github.com/ssyan-dev/portfolio/internal/models"
 )
 
 type UserRepository interface {

@@ -12,28 +12,28 @@ import (
 	"github.com/gofiber/fiber/v3"
 	"github.com/gofiber/fiber/v3/middleware/cors"
 	"github.com/gofiber/fiber/v3/middleware/recover"
-	authHandler "github.com/ssyan-dev/go-fiber-backend-template/internal/auth/handler"
-	authRepo "github.com/ssyan-dev/go-fiber-backend-template/internal/auth/repository"
-	authService "github.com/ssyan-dev/go-fiber-backend-template/internal/auth/service"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/config"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/database"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/logger"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/middleware"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/pkg/response"
-	sessionHandler "github.com/ssyan-dev/go-fiber-backend-template/internal/sessions/handler"
-	sessionRepo "github.com/ssyan-dev/go-fiber-backend-template/internal/sessions/repository"
-	sessionService "github.com/ssyan-dev/go-fiber-backend-template/internal/sessions/service"
-	userHandler "github.com/ssyan-dev/go-fiber-backend-template/internal/user/handler"
-	userRepo "github.com/ssyan-dev/go-fiber-backend-template/internal/user/repository"
-	userService "github.com/ssyan-dev/go-fiber-backend-template/internal/user/service"
+	authHandler "github.com/ssyan-dev/portfolio/internal/auth/handler"
+	authRepo "github.com/ssyan-dev/portfolio/internal/auth/repository"
+	authService "github.com/ssyan-dev/portfolio/internal/auth/service"
+	"github.com/ssyan-dev/portfolio/internal/config"
+	"github.com/ssyan-dev/portfolio/internal/database"
+	"github.com/ssyan-dev/portfolio/internal/logger"
+	"github.com/ssyan-dev/portfolio/internal/middleware"
+	"github.com/ssyan-dev/portfolio/internal/pkg/response"
+	sessionHandler "github.com/ssyan-dev/portfolio/internal/sessions/handler"
+	sessionRepo "github.com/ssyan-dev/portfolio/internal/sessions/repository"
+	sessionService "github.com/ssyan-dev/portfolio/internal/sessions/service"
+	userHandler "github.com/ssyan-dev/portfolio/internal/user/handler"
+	userRepo "github.com/ssyan-dev/portfolio/internal/user/repository"
+	userService "github.com/ssyan-dev/portfolio/internal/user/service"
 	"go.uber.org/zap"
 
-	_ "github.com/ssyan-dev/go-fiber-backend-template/docs"
+	_ "github.com/ssyan-dev/portfolio/docs"
 )
 
-// @title			Backend API
+// @title			Portfolio API
 // @version		1.0
-// @description	Backend API
+// @description	Portfolio API
 
 // @contact.name	Stanislav Simakhin
 // @contact.url	https://ssyan.ru

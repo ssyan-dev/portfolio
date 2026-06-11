@@ -5,7 +5,7 @@ import (
 	"fmt"
 
 	"github.com/redis/go-redis/v9"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/config"
+	"github.com/ssyan-dev/portfolio/internal/config"
 )
 
 func NewRedis(ctx context.Context, cfg *config.RedisConfig) (*redis.Client, error) {

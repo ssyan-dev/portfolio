@@ -30,9 +30,6 @@ fmt:
 swagger:
 	swag init -g $(BACKEND_MAIN)
 
-seed:
-	go run cmd/seed/main.go
-
 # docker
 docker-up:
 	docker compose up -d

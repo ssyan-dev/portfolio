@@ -2,10 +2,10 @@ package handler
 
 import (
 	"github.com/gofiber/fiber/v3"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/auth/service"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/middleware"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/pkg/cookie"
-	"github.com/ssyan-dev/go-fiber-backend-template/internal/pkg/response"
+	"github.com/ssyan-dev/portfolio/internal/auth/service"
+	"github.com/ssyan-dev/portfolio/internal/middleware"
+	"github.com/ssyan-dev/portfolio/internal/pkg/cookie"
+	"github.com/ssyan-dev/portfolio/internal/pkg/response"
 )
 
 type AuthHandler struct {
