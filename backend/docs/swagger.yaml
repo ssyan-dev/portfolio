@@ -10,6 +10,26 @@ definitions:
     - email
     - password
     type: object
+  handler.projectReq:
+    properties:
+      description:
+        type: string
+      github_url:
+        type: string
+      image_url:
+        type: string
+      project_url:
+        type: string
+      stack:
+        items:
+          type: string
+        type: array
+      title:
+        minLength: 3
+        type: string
+    required:
+    - title
+    type: object
   handler.registerReq:
     properties:
       email:
@@ -36,6 +56,29 @@ definitions:
         type: string
       new_password:
         minLength: 6
+        type: string
+    type: object
+  models.Project:
+    properties:
+      created_at:
+        type: string
+      description:
+        type: string
+      github_url:
+        type: string
+      id:
+        type: string
+      image_url:
+        type: string
+      project_url:
+        type: string
+      stack:
+        items:
+          type: string
+        type: array
+      title:
+        type: string
+      updated_at:
         type: string
     type: object
   models.User:
@@ -70,10 +113,76 @@ info:
   contact:
     name: Stanislav Simakhin
     url: https://ssyan.ru
-  description: Backend API
-  title: Backend API
+  description: Portfolio API
+  title: Portfolio API
   version: "1.0"
 paths:
+  /admin/projects:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: Project dto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.projectReq'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/models.Project'
+      security:
+      - BearerAuth: []
+      summary: Create project
+      tags:
+      - projects
+  /admin/projects/{id}:
+    delete:
+      parameters:
+      - description: Project ID
+        in: path
+        name: id
+        required: true
+        type: string
+      responses:
+        "200":
+          description: OK
+      security:
+      - BearerAuth: []
+      summary: Delete project
+      tags:
+      - projects
+    put:
+      consumes:
+      - application/json
+      parameters:
+      - description: Project ID
+        in: path
+        name: id
+        required: true
+        type: string
+      - description: Project dto
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/handler.projectReq'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Project'
+      security:
+      - BearerAuth: []
+      summary: Update project
+      tags:
+      - projects
   /auth/login:
     post:
       consumes:
@@ -234,6 +343,38 @@ paths:
       summary: Block session
       tags:
       - auth
+  /projects:
+    get:
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/models.Project'
+            type: array
+      summary: Get all projects
+      tags:
+      - projects
+  /projects/{id}:
+    get:
+      parameters:
+      - description: Project ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.Project'
+      summary: Get project by ID
+      tags:
+      - projects
   /users/me:
     get:
       consumes:

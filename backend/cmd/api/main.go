@@ -20,6 +20,9 @@ import (
 	"github.com/ssyan-dev/portfolio/internal/logger"
 	"github.com/ssyan-dev/portfolio/internal/middleware"
 	"github.com/ssyan-dev/portfolio/internal/pkg/response"
+	projectHandler "github.com/ssyan-dev/portfolio/internal/project/handler"
+	projectRepo "github.com/ssyan-dev/portfolio/internal/project/repository"
+	projectService "github.com/ssyan-dev/portfolio/internal/project/service"
 	sessionHandler "github.com/ssyan-dev/portfolio/internal/sessions/handler"
 	sessionRepo "github.com/ssyan-dev/portfolio/internal/sessions/repository"
 	sessionService "github.com/ssyan-dev/portfolio/internal/sessions/service"
@@ -126,6 +129,14 @@ func main() {
 	uh := userHandler.NewUserHandler(us)
 
 	sh := sessionHandler.NewSessionHandler(ss)
+
+	pr := projectRepo.NewProjectRepository(pg)
+	prr := projectRepo.NewProjectRedisRepository(rdb)
+	ps := projectService.NewProjectService(pr, prr)
+	ph := projectHandler.NewProjectHandler(ps)
+
+	admin := api.Group("/admin", middleware.AuthMiddleware(&cfg.JWT), middleware.RolesMiddleware("admin"))
+	ph.RegisterRoutes(api, admin)
 
 	protected := api.Group("/", middleware.AuthMiddleware(&cfg.JWT))
 	uh.RegisterRoutes(protected)
